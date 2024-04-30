@@ -18,7 +18,7 @@ public static class ISyncPolicyPolicyWrapExtensions
             throw new ArgumentNullException(nameof(outerPolicy));
         }
 
-        return ((Policy)outerPolicy).Wrap(innerPolicy);
+        return outerPolicy.Wrap(innerPolicy);
     }
 
     /// <summary>
@@ -35,7 +35,7 @@ public static class ISyncPolicyPolicyWrapExtensions
             throw new ArgumentNullException(nameof(outerPolicy));
         }
 
-        return ((Policy)outerPolicy).Wrap(innerPolicy);
+        return outerPolicy.Wrap(innerPolicy);
     }
 
     /// <summary>
@@ -52,7 +52,7 @@ public static class ISyncPolicyPolicyWrapExtensions
             throw new ArgumentNullException(nameof(outerPolicy));
         }
 
-        return ((Policy<TResult>)outerPolicy).Wrap(innerPolicy);
+        return outerPolicy.Wrap(innerPolicy);
     }
 
     /// <summary>
@@ -69,7 +69,7 @@ public static class ISyncPolicyPolicyWrapExtensions
             throw new ArgumentNullException(nameof(outerPolicy));
         }
 
-        return ((Policy<TResult>)outerPolicy).Wrap(innerPolicy);
+        return outerPolicy.Wrap(innerPolicy);
     }
 }
 
@@ -160,7 +160,9 @@ public partial class Policy
         policies.Length switch
         {
             < MinimumPoliciesRequiredForWrap => throw new ArgumentException("The enumerable of policies to form the wrap must contain at least two policies.", nameof(policies)),
+#pragma warning disable S3215
             MinimumPoliciesRequiredForWrap => new PolicyWrap((Policy)policies[0], policies[1]),
+#pragma warning restore S3215
             _ => Wrap(policies[0], Wrap(policies.Skip(1).ToArray())),
         };
 
@@ -175,7 +177,9 @@ public partial class Policy
         policies.Length switch
         {
             < MinimumPoliciesRequiredForWrap => throw new ArgumentException("The enumerable of policies to form the wrap must contain at least two policies.", nameof(policies)),
+#pragma warning disable S3215
             MinimumPoliciesRequiredForWrap => new PolicyWrap<TResult>((Policy<TResult>)policies[0], policies[1]),
+#pragma warning restore S3215
             _ => Wrap(policies[0], Wrap(policies.Skip(1).ToArray())),
         };
 }
