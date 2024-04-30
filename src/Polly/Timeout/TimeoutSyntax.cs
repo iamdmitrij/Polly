@@ -104,98 +104,98 @@ public partial class Policy
     }
 
     /// <summary>
-    /// Builds a <see cref="Policy"/> that will wait for a delegate to complete for a specified period of time. A <see cref="TimeoutRejectedException"/> will be thrown if the delegate does not complete within the configured timeout.
+    /// Builds a <see cref="Policy"/> that will wait for a delegate to complete for a specified period of time. A <see cref="TimeoutRejectedException"/> will be thrown if the delegate does not complete within the configured duration.
     /// </summary>
-    /// <param name="timeout">The timeout.</param>
+    /// <param name="duration">The duration.</param>
     /// <returns>The policy instance.</returns>
-    /// <exception cref="ArgumentOutOfRangeException">timeout;Value must be a positive TimeSpan (or Timeout.InfiniteTimeSpan to indicate no timeout).</exception>
-    public static TimeoutPolicy Timeout(TimeSpan timeout)
+    /// <exception cref="ArgumentOutOfRangeException">duration;Value must be a positive TimeSpan (or Timeout.InfiniteTimeSpan to indicate no duration).</exception>
+    public static TimeoutPolicy Timeout(TimeSpan duration)
     {
-        TimeoutValidator.ValidateTimeSpanTimeout(timeout);
+        TimeoutValidator.ValidateTimeSpanTimeout(duration);
         Action<Context, TimeSpan, Task, Exception> doNothing = (_, _, _, _) => { };
 
-        return Timeout(_ => timeout, TimeoutStrategy.Optimistic, doNothing);
+        return Timeout(_ => duration, TimeoutStrategy.Optimistic, doNothing);
     }
 
     /// <summary>
-    /// Builds a <see cref="Policy" /> that will wait for a delegate to complete for a specified period of time. A <see cref="TimeoutRejectedException" /> will be thrown if the delegate does not complete within the configured timeout.
+    /// Builds a <see cref="Policy" /> that will wait for a delegate to complete for a specified period of time. A <see cref="TimeoutRejectedException" /> will be thrown if the delegate does not complete within the configured duration.
     /// </summary>
-    /// <param name="timeout">The timeout.</param>
-    /// <param name="timeoutStrategy">The timeout strategy.</param>
+    /// <param name="duration">The duration.</param>
+    /// <param name="timeoutStrategy">The duration strategy.</param>
     /// <returns>The policy instance.</returns>
-    /// <exception cref="ArgumentOutOfRangeException">timeout;Value must be a positive TimeSpan (or Timeout.InfiniteTimeSpan to indicate no timeout).</exception>
-    public static TimeoutPolicy Timeout(TimeSpan timeout, TimeoutStrategy timeoutStrategy)
+    /// <exception cref="ArgumentOutOfRangeException">duration;Value must be a positive TimeSpan (or Timeout.InfiniteTimeSpan to indicate no duration).</exception>
+    public static TimeoutPolicy Timeout(TimeSpan duration, TimeoutStrategy timeoutStrategy)
     {
-        TimeoutValidator.ValidateTimeSpanTimeout(timeout);
+        TimeoutValidator.ValidateTimeSpanTimeout(duration);
         Action<Context, TimeSpan, Task, Exception> doNothing = (_, _, _, _) => { };
 
-        return Timeout(_ => timeout, timeoutStrategy, doNothing);
+        return Timeout(_ => duration, timeoutStrategy, doNothing);
     }
 
     /// <summary>
-    /// Builds a <see cref="Policy"/> that will wait for a delegate to complete for a specified period of time. A <see cref="TimeoutRejectedException"/> will be thrown if the delegate does not complete within the configured timeout.
+    /// Builds a <see cref="Policy"/> that will wait for a delegate to complete for a specified period of time. A <see cref="TimeoutRejectedException"/> will be thrown if the delegate does not complete within the configured duration.
     /// </summary>
-    /// <param name="timeout">The timeout.</param>
-    /// <param name="onTimeout">An action to call on timeout, passing the execution context, the timeout applied, and a <see cref="Task"/> capturing the abandoned, timed-out action.
+    /// <param name="duration">The duration.</param>
+    /// <param name="onTimeout">An action to call on duration, passing the execution context, the duration applied, and a <see cref="Task"/> capturing the abandoned, timed-out action.
     /// <remarks>The Task parameter will be null if the executed action responded cooperatively to cancellation before the policy timed it out.</remarks></param>
     /// <returns>The policy instance.</returns>
-    /// <exception cref="ArgumentOutOfRangeException">timeout;Value must be a positive TimeSpan (or Timeout.InfiniteTimeSpan to indicate no timeout).</exception>
+    /// <exception cref="ArgumentOutOfRangeException">duration;Value must be a positive TimeSpan (or Timeout.InfiniteTimeSpan to indicate no duration).</exception>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="onTimeout"/> is <see langword="null"/>.</exception>
-    public static TimeoutPolicy Timeout(TimeSpan timeout, Action<Context, TimeSpan, Task> onTimeout)
+    public static TimeoutPolicy Timeout(TimeSpan duration, Action<Context, TimeSpan, Task> onTimeout)
     {
-        TimeoutValidator.ValidateTimeSpanTimeout(timeout);
+        TimeoutValidator.ValidateTimeSpanTimeout(duration);
 
-        return Timeout(_ => timeout, TimeoutStrategy.Optimistic, onTimeout);
+        return Timeout(_ => duration, TimeoutStrategy.Optimistic, onTimeout);
     }
 
     /// <summary>
-    /// Builds a <see cref="Policy"/> that will wait for a delegate to complete for a specified period of time. A <see cref="TimeoutRejectedException"/> will be thrown if the delegate does not complete within the configured timeout.
+    /// Builds a <see cref="Policy"/> that will wait for a delegate to complete for a specified period of time. A <see cref="TimeoutRejectedException"/> will be thrown if the delegate does not complete within the configured duration.
     /// </summary>
-    /// <param name="timeout">The timeout.</param>
-    /// <param name="onTimeout">An action to call on timeout, passing the execution context, the timeout applied, the <see cref="Task"/> capturing the abandoned, timed-out action, and captured <see cref="Exception"/>.
+    /// <param name="duration">The duration.</param>
+    /// <param name="onTimeout">An action to call on duration, passing the execution context, the duration applied, the <see cref="Task"/> capturing the abandoned, timed-out action, and captured <see cref="Exception"/>.
     /// <remarks>The Task parameter will be null if the executed action responded cooperatively to cancellation before the policy timed it out.</remarks></param>
     /// <returns>The policy instance.</returns>
-    /// <exception cref="ArgumentOutOfRangeException">timeout;Value must be greater than zero.</exception>
+    /// <exception cref="ArgumentOutOfRangeException">duration;Value must be greater than zero.</exception>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="onTimeout"/> is <see langword="null"/>.</exception>
-    public static TimeoutPolicy Timeout(TimeSpan timeout, Action<Context, TimeSpan, Task, Exception> onTimeout)
+    public static TimeoutPolicy Timeout(TimeSpan duration, Action<Context, TimeSpan, Task, Exception> onTimeout)
     {
-        TimeoutValidator.ValidateTimeSpanTimeout(timeout);
+        TimeoutValidator.ValidateTimeSpanTimeout(duration);
 
-        return Timeout(_ => timeout, TimeoutStrategy.Optimistic, onTimeout);
+        return Timeout(_ => duration, TimeoutStrategy.Optimistic, onTimeout);
     }
 
     /// <summary>
-    /// Builds a <see cref="Policy" /> that will wait for a delegate to complete for a specified period of time. A <see cref="TimeoutRejectedException" /> will be thrown if the delegate does not complete within the configured timeout.
+    /// Builds a <see cref="Policy" /> that will wait for a delegate to complete for a specified period of time. A <see cref="TimeoutRejectedException" /> will be thrown if the delegate does not complete within the configured duration.
     /// </summary>
-    /// <param name="timeout">The timeout.</param>
-    /// <param name="timeoutStrategy">The timeout strategy.</param>
-    /// <param name="onTimeout">An action to call on timeout, passing the execution context, the timeout applied, and a <see cref="Task" /> capturing the abandoned, timed-out action.
+    /// <param name="duration">The duration.</param>
+    /// <param name="timeoutStrategy">The duration strategy.</param>
+    /// <param name="onTimeout">An action to call on duration, passing the execution context, the duration applied, and a <see cref="Task" /> capturing the abandoned, timed-out action.
     /// <remarks>The Task parameter will be null if the executed action responded cooperatively to cancellation before the policy timed it out.</remarks></param>
     /// <returns>The policy instance.</returns>
-    /// <exception cref="ArgumentOutOfRangeException">timeout;Value must be a positive TimeSpan (or Timeout.InfiniteTimeSpan to indicate no timeout).</exception>
+    /// <exception cref="ArgumentOutOfRangeException">duration;Value must be a positive TimeSpan (or Timeout.InfiniteTimeSpan to indicate no duration).</exception>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="onTimeout"/> is <see langword="null"/>.</exception>
-    public static TimeoutPolicy Timeout(TimeSpan timeout, TimeoutStrategy timeoutStrategy, Action<Context, TimeSpan, Task> onTimeout)
+    public static TimeoutPolicy Timeout(TimeSpan duration, TimeoutStrategy timeoutStrategy, Action<Context, TimeSpan, Task> onTimeout)
     {
-        TimeoutValidator.ValidateTimeSpanTimeout(timeout);
+        TimeoutValidator.ValidateTimeSpanTimeout(duration);
 
-        return Timeout(_ => timeout, timeoutStrategy, onTimeout);
+        return Timeout(_ => duration, timeoutStrategy, onTimeout);
     }
 
     /// <summary>
-    /// Builds a <see cref="Policy" /> that will wait for a delegate to complete for a specified period of time. A <see cref="TimeoutRejectedException" /> will be thrown if the delegate does not complete within the configured timeout.
+    /// Builds a <see cref="Policy" /> that will wait for a delegate to complete for a specified period of time. A <see cref="TimeoutRejectedException" /> will be thrown if the delegate does not complete within the configured duration.
     /// </summary>
-    /// <param name="timeout">The timeout.</param>
-    /// <param name="timeoutStrategy">The timeout strategy.</param>
-    /// <param name="onTimeout">An action to call on timeout, passing the execution context, the timeout applied, the <see cref="Task" /> capturing the abandoned, timed-out action, and the captured <see cref="Exception"/>.
+    /// <param name="duration">The duration.</param>
+    /// <param name="timeoutStrategy">The duration strategy.</param>
+    /// <param name="onTimeout">An action to call on duration, passing the execution context, the duration applied, the <see cref="Task" /> capturing the abandoned, timed-out action, and the captured <see cref="Exception"/>.
     /// <remarks>The Task parameter will be null if the executed action responded cooperatively to cancellation before the policy timed it out.</remarks></param>
     /// <returns>The policy instance.</returns>
-    /// <exception cref="ArgumentOutOfRangeException">timeout;Value must be greater than zero.</exception>
+    /// <exception cref="ArgumentOutOfRangeException">duration;Value must be greater than zero.</exception>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="onTimeout"/> is <see langword="null"/>.</exception>
-    public static TimeoutPolicy Timeout(TimeSpan timeout, TimeoutStrategy timeoutStrategy, Action<Context, TimeSpan, Task, Exception> onTimeout)
+    public static TimeoutPolicy Timeout(TimeSpan duration, TimeoutStrategy timeoutStrategy, Action<Context, TimeSpan, Task, Exception> onTimeout)
     {
-        TimeoutValidator.ValidateTimeSpanTimeout(timeout);
+        TimeoutValidator.ValidateTimeSpanTimeout(duration);
 
-        return Timeout(_ => timeout, timeoutStrategy, onTimeout);
+        return Timeout(_ => duration, timeoutStrategy, onTimeout);
     }
 
     /// <summary>
