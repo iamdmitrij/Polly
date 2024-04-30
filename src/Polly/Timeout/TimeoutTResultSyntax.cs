@@ -109,10 +109,10 @@ public partial class Policy
     }
 
     /// <summary>
-    /// Builds a <see cref="Policy{TResult}"/> that will wait for a delegate to complete for a specified period of time. A <see cref="TimeoutRejectedException"/> will be thrown if the delegate does not complete within the configured duration.
+    /// Builds a <see cref="Policy{TResult}"/> that will wait for a delegate to complete for a specified period of time. A <see cref="TimeoutRejectedException"/> will be thrown if the delegate does not complete within the configured timeout.
     /// </summary>
     /// <typeparam name="TResult">The type of the result.</typeparam>
-    /// <param name="duration">The duration.</param>
+    /// <param name="duration">The duration of timeout.</param>
     /// <returns>The policy instance.</returns>
     /// <exception cref="ArgumentOutOfRangeException">duration;Value must be a positive TimeSpan (or Timeout.InfiniteTimeSpan to indicate no duration).</exception>
     public static TimeoutPolicy<TResult> Timeout<TResult>(TimeSpan duration)
@@ -124,10 +124,10 @@ public partial class Policy
     }
 
     /// <summary>
-    /// Builds a <see cref="Policy{TResult}" /> that will wait for a delegate to complete for a specified period of time. A <see cref="TimeoutRejectedException" /> will be thrown if the delegate does not complete within the configured duration.
+    /// Builds a <see cref="Policy{TResult}" /> that will wait for a delegate to complete for a specified period of time. A <see cref="TimeoutRejectedException" /> will be thrown if the delegate does not complete within the configured timeout.
     /// </summary>
     /// <typeparam name="TResult">The return type of delegates which may be executed through the policy.</typeparam>
-    /// <param name="duration">The duration.</param>
+    /// <param name="duration">The duration of timeout.</param>
     /// <param name="timeoutStrategy">The duration strategy.</param>
     /// <returns>The policy instance.</returns>
     /// <exception cref="ArgumentOutOfRangeException">duration;Value must be a positive TimeSpan (or Timeout.InfiniteTimeSpan to indicate no duration).</exception>
@@ -140,10 +140,10 @@ public partial class Policy
     }
 
     /// <summary>
-    /// Builds a <see cref="Policy{TResult}"/> that will wait for a delegate to complete for a specified period of time. A <see cref="TimeoutRejectedException"/> will be thrown if the delegate does not complete within the configured duration.
+    /// Builds a <see cref="Policy{TResult}"/> that will wait for a delegate to complete for a specified period of time. A <see cref="TimeoutRejectedException"/> will be thrown if the delegate does not complete within the configured timeout.
     /// </summary>
     /// <typeparam name="TResult">The return type of delegates which may be executed through the policy.</typeparam>
-    /// <param name="duration">The duration.</param>
+    /// <param name="duration">The duration of timeout.</param>
     /// <param name="onTimeout">An action to call on duration, passing the execution context, the duration applied, and a <see cref="Task{TResult}"/> capturing the abandoned, timed-out action.
     /// <remarks>The Task parameter will be null if the executed action responded cooperatively to cancellation before the policy timed it out.</remarks></param>
     /// <returns>The policy instance.</returns>
@@ -156,10 +156,10 @@ public partial class Policy
     }
 
     /// <summary>
-    /// Builds a <see cref="Policy{TResult}"/> that will wait for a delegate to complete for a specified period of time. A <see cref="TimeoutRejectedException"/> will be thrown if the delegate does not complete within the configured duration.
+    /// Builds a <see cref="Policy{TResult}"/> that will wait for a delegate to complete for a specified period of time. A <see cref="TimeoutRejectedException"/> will be thrown if the delegate does not complete within the configured timeout.
     /// </summary>
     /// <typeparam name="TResult">The return type of delegates which may be executed through the policy.</typeparam>
-    /// <param name="duration">The duration.</param>
+    /// <param name="duration">The duration of timeout.</param>
     /// <param name="onTimeout">An action to call on duration, passing the execution context, the duration applied, the <see cref="Task{TResult}"/> capturing the abandoned, timed-out action, and the captured <see cref="Exception"/>.
     /// <remarks>The Task parameter will be null if the executed action responded cooperatively to cancellation before the policy timed it out.</remarks></param>
     /// <returns>The policy instance.</returns>
@@ -172,10 +172,10 @@ public partial class Policy
     }
 
     /// <summary>
-    /// Builds a <see cref="Policy{TResult}" /> that will wait for a delegate to complete for a specified period of time. A <see cref="TimeoutRejectedException" /> will be thrown if the delegate does not complete within the configured duration.
+    /// Builds a <see cref="Policy{TResult}" /> that will wait for a delegate to complete for a specified period of time. A <see cref="TimeoutRejectedException" /> will be thrown if the delegate does not complete within the configured timeout.
     /// </summary>
     /// <typeparam name="TResult">The return type of delegates which may be executed through the policy.</typeparam>
-    /// <param name="duration">The duration.</param>
+    /// <param name="duration">The duration of timeout.</param>
     /// <param name="timeoutStrategy">The duration strategy.</param>
     /// <param name="onTimeout">An action to call on duration, passing the execution context, the duration applied, and a <see cref="Task{TResult}" /> capturing the abandoned, timed-out action.
     /// <remarks>The Task parameter will be null if the executed action responded cooperatively to cancellation before the policy timed it out.</remarks></param>
@@ -189,10 +189,10 @@ public partial class Policy
     }
 
     /// <summary>
-    /// Builds a <see cref="Policy{TResult}" /> that will wait for a delegate to complete for a specified period of time. A <see cref="TimeoutRejectedException" /> will be thrown if the delegate does not complete within the configured duration.
+    /// Builds a <see cref="Policy{TResult}" /> that will wait for a delegate to complete for a specified period of time. A <see cref="TimeoutRejectedException" /> will be thrown if the delegate does not complete within the configured timeout.
     /// </summary>
     /// <typeparam name="TResult">The return type of delegates which may be executed through the policy.</typeparam>
-    /// <param name="duration">The duration.</param>
+    /// <param name="duration">The duration of timeout.</param>
     /// <param name="timeoutStrategy">The duration strategy.</param>
     /// <param name="onTimeout">An action to call on duration, passing the execution context, the duration applied, the <see cref="Task{TResult}" /> capturing the abandoned, timed-out action, and the captured <see cref="Exception"/>.
     /// <remarks>The Task parameter will be null if the executed action responded cooperatively to cancellation before the policy timed it out.</remarks></param>
