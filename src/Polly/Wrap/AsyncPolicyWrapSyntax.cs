@@ -18,7 +18,7 @@ public static class IAsyncPolicyPolicyWrapExtensions
             throw new ArgumentNullException(nameof(outerPolicy));
         }
 
-        return ((AsyncPolicy)outerPolicy).WrapAsync(innerPolicy);
+        return outerPolicy.WrapAsync(innerPolicy);
     }
 
     /// <summary>
@@ -35,7 +35,7 @@ public static class IAsyncPolicyPolicyWrapExtensions
             throw new ArgumentNullException(nameof(outerPolicy));
         }
 
-        return ((AsyncPolicy)outerPolicy).WrapAsync(innerPolicy);
+        return outerPolicy.WrapAsync(innerPolicy);
     }
 
     /// <summary>
@@ -52,7 +52,7 @@ public static class IAsyncPolicyPolicyWrapExtensions
             throw new ArgumentNullException(nameof(outerPolicy));
         }
 
-        return ((AsyncPolicy<TResult>)outerPolicy).WrapAsync(innerPolicy);
+        return outerPolicy.WrapAsync(innerPolicy);
     }
 
     /// <summary>
@@ -69,7 +69,7 @@ public static class IAsyncPolicyPolicyWrapExtensions
             throw new ArgumentNullException(nameof(outerPolicy));
         }
 
-        return ((AsyncPolicy<TResult>)outerPolicy).WrapAsync(innerPolicy);
+        return outerPolicy.WrapAsync(innerPolicy);
     }
 }
 
@@ -162,7 +162,9 @@ public partial class Policy
         policies.Length switch
         {
             < MinimumPoliciesRequiredForWrap => throw new ArgumentException("The enumerable of policies to form the wrap must contain at least two policies.", nameof(policies)),
+#pragma warning disable S3215
             MinimumPoliciesRequiredForWrap => new AsyncPolicyWrap((AsyncPolicy)policies[0], policies[1]),
+#pragma warning restore S3215
             _ => WrapAsync(policies[0], WrapAsync(policies.Skip(1).ToArray())),
         };
 
@@ -177,7 +179,9 @@ public partial class Policy
         policies.Length switch
         {
             < MinimumPoliciesRequiredForWrap => throw new ArgumentException("The enumerable of policies to form the wrap must contain at least two policies.", nameof(policies)),
+#pragma warning disable S3215
             MinimumPoliciesRequiredForWrap => new AsyncPolicyWrap<TResult>((AsyncPolicy<TResult>)policies[0], policies[1]),
+#pragma warning restore S3215
             _ => WrapAsync(policies[0], WrapAsync(policies.Skip(1).ToArray())),
         };
 }
