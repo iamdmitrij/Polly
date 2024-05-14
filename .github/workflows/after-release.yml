@@ -16,7 +16,7 @@ jobs:
 
   update-changelog:
     runs-on: [ ubuntu-latest ]
-    if: github.event_name == 'release'
+    if: github.event_name == 'release' && github.event.repository.fork == false
 
     concurrency:
       group: '${{ github.workflow }}-changelog'
@@ -33,7 +33,7 @@ jobs:
           permissions: 'contents:write, pull_requests:write'
 
       - name: Checkout code
-        uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # v4.1.4
+        uses: actions/checkout@44c2b7a8a4ea60a981eaca3cf939b5f4305c123b # v4.1.5
         with:
           token: ${{ steps.generate-application-token.outputs.token }}
 
@@ -118,6 +118,7 @@ jobs:
 
   update-milestone:
     runs-on: [ ubuntu-latest ]
+    if: github.event.repository.fork == false
 
     concurrency:
       group: '${{ github.workflow }}-milestone'
@@ -140,7 +141,7 @@ jobs:
               state: 'open',
             });
 
-            const milestone = milestones.find((p) => p.title === process.env.RELEASE_VERSION);
+            const milestone = milestones.find((p) => p.title === `v${process.env.RELEASE_VERSION}`);
 
             if (!milestone) {
               return;
