@@ -10,12 +10,12 @@ public abstract partial class AsyncPolicy
     /// <returns>An instance of <see cref="AsyncPolicy"/>.</returns>
     public AsyncPolicy WithPolicyKey(string policyKey)
     {
-        if (policyKeyInternal != null)
+        if (PolicyKeyInternal != null)
         {
             throw PolicyKeyMustBeImmutableException(nameof(policyKey));
         }
 
-        policyKeyInternal = policyKey;
+        PolicyKeyInternal = policyKey;
         return this;
     }
 
@@ -27,12 +27,12 @@ public abstract partial class AsyncPolicy
     /// <returns>An instance of <see cref="IAsyncPolicy"/>.</returns>
     IAsyncPolicy IAsyncPolicy.WithPolicyKey(string policyKey)
     {
-        if (policyKeyInternal != null)
+        if (PolicyKeyInternal != null)
         {
             throw PolicyKeyMustBeImmutableException(nameof(policyKey));
         }
 
-        policyKeyInternal = policyKey;
+        PolicyKeyInternal = policyKey;
         return this;
     }
 }
@@ -47,12 +47,12 @@ public abstract partial class AsyncPolicy<TResult>
     /// <returns>An instance of <see cref="AsyncPolicy{TResult}"/>.</returns>
     public AsyncPolicy<TResult> WithPolicyKey(string policyKey)
     {
-        if (policyKeyInternal != null)
+        if (PolicyKeyInternal != null)
         {
             throw PolicyKeyMustBeImmutableException(nameof(policyKey));
         }
 
-        policyKeyInternal = policyKey;
+        PolicyKeyInternal = policyKey;
         return this;
     }
 
@@ -64,12 +64,12 @@ public abstract partial class AsyncPolicy<TResult>
     /// <returns>An instance of <see cref="IAsyncPolicy{TResult}"/>.</returns>
     IAsyncPolicy<TResult> IAsyncPolicy<TResult>.WithPolicyKey(string policyKey)
     {
-        if (policyKeyInternal != null)
+        if (PolicyKeyInternal != null)
         {
             throw PolicyKeyMustBeImmutableException(nameof(policyKey));
         }
 
-        policyKeyInternal = policyKey;
+        PolicyKeyInternal = policyKey;
         return this;
     }
 }
