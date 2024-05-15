@@ -19,7 +19,7 @@ public class RelativeTtl : ITtlStrategy
             throw new ArgumentOutOfRangeException(nameof(ttl), "The ttl for items to cache must be greater than zero.");
         }
 
-        this._ttl = ttl;
+        _ttl = ttl;
     }
 
     /// <summary>

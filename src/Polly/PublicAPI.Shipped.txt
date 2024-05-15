@@ -417,7 +417,7 @@ Polly.PolicyBase
 Polly.PolicyBase.ExceptionPredicates.get -> Polly.ExceptionPredicates
 Polly.PolicyBase.PolicyBase(Polly.PolicyBuilder policyBuilder) -> void
 Polly.PolicyBase.PolicyKey.get -> string
-Polly.PolicyBase.policyKeyInternal -> string
+Polly.PolicyBase.PolicyKeyInternal -> string
 Polly.PolicyBase<TResult>
 Polly.PolicyBase<TResult>.PolicyBase(Polly.PolicyBuilder<TResult> policyBuilder) -> void
 Polly.PolicyBase<TResult>.ResultPredicates.get -> Polly.ResultPredicates<TResult>
@@ -542,7 +542,7 @@ Polly.Wrap.PolicyWrap.Outer.get -> Polly.IsPolicy
 Polly.Wrap.PolicyWrap<TResult>
 Polly.Wrap.PolicyWrap<TResult>.Inner.get -> Polly.IsPolicy
 Polly.Wrap.PolicyWrap<TResult>.Outer.get -> Polly.IsPolicy
-readonly Polly.Caching.NonSlidingTtl.absoluteExpirationTime -> System.DateTimeOffset
+readonly Polly.Caching.NonSlidingTtl.AbsoluteExpirationTime -> System.DateTimeOffset
 static Polly.AdvancedCircuitBreakerSyntax.AdvancedCircuitBreaker(this Polly.PolicyBuilder policyBuilder, double failureThreshold, System.TimeSpan samplingDuration, int minimumThroughput, System.TimeSpan durationOfBreak) -> Polly.CircuitBreaker.CircuitBreakerPolicy
 static Polly.AdvancedCircuitBreakerSyntax.AdvancedCircuitBreaker(this Polly.PolicyBuilder policyBuilder, double failureThreshold, System.TimeSpan samplingDuration, int minimumThroughput, System.TimeSpan durationOfBreak, System.Action<System.Exception, Polly.CircuitBreaker.CircuitState, System.TimeSpan, Polly.Context> onBreak, System.Action<Polly.Context> onReset, System.Action onHalfOpen) -> Polly.CircuitBreaker.CircuitBreakerPolicy
 static Polly.AdvancedCircuitBreakerSyntax.AdvancedCircuitBreaker(this Polly.PolicyBuilder policyBuilder, double failureThreshold, System.TimeSpan samplingDuration, int minimumThroughput, System.TimeSpan durationOfBreak, System.Action<System.Exception, System.TimeSpan, Polly.Context> onBreak, System.Action<Polly.Context> onReset) -> Polly.CircuitBreaker.CircuitBreakerPolicy

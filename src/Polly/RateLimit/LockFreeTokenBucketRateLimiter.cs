@@ -38,7 +38,7 @@ internal sealed class LockFreeTokenBucketRateLimiter : IRateLimiter
         }
 
         _addTokenTickInterval = onePer.Ticks;
-        this._bucketCapacity = bucketCapacity;
+        _bucketCapacity = bucketCapacity;
 
         _currentTokens = bucketCapacity;
         _addNextTokenAtTicks = SystemClock.DateTimeOffsetUtcNow().Ticks + _addTokenTickInterval;
