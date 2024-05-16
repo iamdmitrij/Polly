@@ -11,7 +11,7 @@
     <NoWarn>$(NoWarn);CA1062;CA1068;S4039;CA1063;CA1031;CA1051</NoWarn>
     <NoWarn>$(NoWarn);CA2211;S2223;CA1032;CA1815;CA1816;S4457;CA1033</NoWarn>
     <NoWarn>$(NoWarn);CA1010;CA1064;SA1118</NoWarn>
-    <NoWarn>$(NoWarn);S3971;CA1724;CA1716;SA1108;CA1710;S4049;S3246</NoWarn>
+    <NoWarn>$(NoWarn);S3971;CA1724;CA1716;CA1710;S4049;S3246</NoWarn>
     <NoWarn>$(NoWarn);CA1805</NoWarn>
 
     <!--Public API Analyzers: We do not need to fix these as it would break compatibility with released Polly versions-->
