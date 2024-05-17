@@ -46,7 +46,9 @@ internal static class TimeoutEngine
                  */
                 actionTask.Wait(timeoutCancellationTokenSource.Token);
             }
-            catch (AggregateException ex) when (ex.InnerExceptions.Count == 1) // Issue #270.  Unwrap extra AggregateException caused by the way pessimistic timeout policy for synchronous executions is necessarily constructed.
+
+            // Issue #270.  Unwrap extra AggregateException caused by the way pessimistic timeout policy for synchronous executions is necessarily constructed.
+            catch (AggregateException ex) when (ex.InnerExceptions.Count == 1)
             {
                 ExceptionDispatchInfo.Capture(ex.InnerException).Throw();
             }
